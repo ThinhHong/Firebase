@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC} from 'react';
+import "./App.css";
+import { createBrowserRouter, createRoutesFromElements, Route, Outlet, RouterProvider } from 'react-router-dom';
+import { Home } from './pages/home/Homepage';
+import { Login } from './pages/Login';
+import { NavigationBar } from './componets/Link';
+import { PostArticle } from './pages/home/post/post-article';
 
-function App() {
+
+const App: FC = () =>{
+
+  const browserRouter = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<Root/>}>
+      <Route index element={<Home/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/post' element={<PostArticle/>}/>
+      </Route>
+    )
+  )
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={browserRouter}/>
     </div>
   );
 }
 
 export default App;
+
+const Root = () =>{
+  return (
+  <>
+    <NavigationBar/>
+    <div>
+      <Outlet/>
+    </div>
+  </>
+  )
+}
