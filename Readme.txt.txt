@@ -57,3 +57,6 @@ react-firebase-hooks
 react-hook-form 
 yup 
 @hookform/resolvers
+
+Replace firebase.ts variables with your own information. You will be required to sign up 
+for google's firebase.
